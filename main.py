@@ -4,7 +4,7 @@ from src.bec_simulation import BECReservoir
 from src.feature_extractor import train_readout
 
 # Load synthetic dataset (sine wave)
-input_signal = np.load('data/sine_wave_data.npy')
+input_signal = np.load('data/sine_wave_data.np')
 
 # Step 1: Run BEC simulation
 reservoir = BECReservoir(time_steps=len(input_signal))

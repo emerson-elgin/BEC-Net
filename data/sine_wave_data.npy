@@ -1,0 +1,10 @@
+import numpy as np
+
+# Generate a simple sine wave dataset
+time_steps = 500
+x = np.linspace(0, 10 * np.pi, time_steps)
+sine_wave = np.sin(x)
+
+# Save to a .npy file
+np.save('data/sine_wave_data.npy', sine_wave)
+print("Regenerated sine_wave_data.npy")
