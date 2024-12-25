@@ -1,21 +1,35 @@
 import numpy as np
-import matplotlib.pyplot as plt
-from src.bec_simulation import BECReservoir
-from src.feature_extractor import train_readout
+from src.bec_simulation import simulate_bec
+from src.input_encoder import encode_input
+from src.feature_extractor import extract_features
+from src.readout_layer import train_readout, predict
 
-# Load synthetic dataset (sine wave)
-input_signal = np.load('data/sine_wave_data.np')
+# Parameters
+grid_size = 128
+dx = 0.1
+time_steps = 100
+dt = 0.01
+g = 1.0
 
-# Step 1: Run BEC simulation
-reservoir = BECReservoir(time_steps=len(input_signal))
-output_features = reservoir.simulate(input_signal)
+# Load input data
+input_signal = np.load('data/sine_wave_data.npy')
 
-# Step 2: Train Readout Layer
-model, predictions, mse = train_readout(output_features, input_signal)
+# Encode input
+encoded_input = encode_input(input_signal, grid_size)
 
-# Step 3: Visualize Results
-plt.plot(input_signal, label="True Input")
-plt.plot(predictions, label="Predicted Output")
-plt.legend()
-plt.title(f"Prediction with Ridge Regression (MSE: {mse:.5f})")
-plt.show()
+# Initial state
+initial_state = np.exp(-(np.linspace(-1, 1, grid_size)**2))
+
+# Simulate BEC
+densities = simulate_bec(initial_state, lambda t: encoded_input, time_steps, dt, grid_size, dx, g)
+
+# Extract features
+features = extract_features(densities)
+
+# Train Readout
+targets = np.sin(np.linspace(0, 10 * np.pi, len(features)))  # Dummy targets
+model = train_readout(features.reshape(-1, 1), targets)
+
+# Predict
+predictions = predict(model, features.reshape(-1, 1))
+print("Predictions:", predictions)
