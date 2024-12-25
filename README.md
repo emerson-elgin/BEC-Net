@@ -2,25 +2,38 @@
 
 ## Overview
 
-BEC-Net is a project designed to simulate dynamic quantum reservoirs using **Bose-Einstein Condensates (BECs)**, which can be applied to neuromorphic computing and quantum machine learning. This project models a quantum system using the concept of a reservoir computing architecture, with BECs acting as the dynamic medium for information processing. The system is trained using a readout layer to predict time-series data.
-
-The input data to the system is encoded and fed into the BEC simulation, where the time evolution of the system is computed. The features extracted from this simulation are then used to train a readout layer that predicts output signals.
+**BEC-Net** simulates dynamic quantum reservoirs using **Bose-Einstein Condensates (BECs)**. This project models a quantum system using a reservoir computing architecture, where BECs act as the dynamic medium for information processing. The system is trained using a readout layer to predict time-series data.
 
 ---
 
 ## Project Structure
 
-The project is organized as follows:
-
-- **`src/`**: Contains all the source code files:
-  - `bec_simulation.py`: Simulates the evolution of BECs over time.
-  - `input_encoder.py`: Encodes the input signal for the simulation.
-  - `feature_extractor.py`: Extracts features from the simulated densities.
+- **`src/`**: Contains all source code files.
+  - `bec_simulation.py`: Simulates the evolution of BECs.
+  - `input_encoder.py`: Encodes the input signal.
+  - `feature_extractor.py`: Extracts features from simulated densities.
   - `readout_layer.py`: Implements the training and prediction of the readout layer.
-  
-- **`data/`**: Contains the input signal data (`sine_wave_data.npy`).
 
-- **`main.py`**: The main script that runs the entire simulation, including encoding the input, simulating the BEC, extracting features, training the readout layer, and making predictions.
+- **`data/`**: Contains input data files (e.g., `sine_wave_data.npy`).
+
+- **`main.py`**: Main script that runs the entire simulation.
+
+---
+
+## Installation
+
+To install the required dependencies for this project, follow these steps:
+
+### Prerequisites:
+Make sure you have Python 3.7+ installed.
+
+### Step 1: Clone the Repository
+Clone the repository to your local machine:
+
+```bash
+git clone https://github.com/your-repository/BEC-Net.git
+cd BEC-Net
+
 
 ---
 
@@ -63,6 +76,57 @@ b is the bias term.
 
 
 
+Usage
+Prepare Input Data
+Generate a sample sine wave signal:
+
+python
+Copy code
+import numpy as np
+
+# Generate a sample sine wave as the input signal
+input_signal = np.sin(np.linspace(0, 10 * np.pi, 500))
+Run the Simulation
+After installing the dependencies, run the simulation with the main.py script:
+
+bash
+Copy code
+python main.py
+Example Plots
+1. Input Signal
+Plotting the original sine wave input signal:
+
+python
+Copy code
+import matplotlib.pyplot as plt
+
+# Plot input signal
+plt.plot(input_signal)
+plt.title("Original Input Signal")
+plt.xlabel("Time")
+plt.ylabel("Amplitude")
+plt.show()
+2. Encoded Input Signal
+Visualizing the encoded input signal as a heatmap:
+
+python
+Copy code
+encoded_input = np.random.rand(128, 128)  # Placeholder data
+plt.imshow(encoded_input, cmap='viridis', origin='lower')
+plt.title("Encoded Input Signal")
+plt.colorbar(label="Amplitude")
+plt.show()
+License
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+markdown
+Copy code
+
+### Explanation of Key Sections:
+1. **Equations**: The equations are formatted using LaTeX for clarity. These will be rendered properly in Markdown viewers (like GitHub).
+2. **Installation Instructions**: The steps are provided for cloning the repository, installing dependencies, and running the project.
+3. **Usage Instructions**: A guide to prepare the input data and run the simulation. Example Python code is provided for clarity.
+4. **Example Plots**: Shows how to visualize the input and encoded signal using `matplotlib`.
 
 
 
@@ -79,14 +143,6 @@ b is the bias term.
 
 
 
-
-
-## Installation
-
-To set up this project, make sure you have the following dependencies installed:
-
-```bash
-pip install numpy matplotlib
 
 
 
