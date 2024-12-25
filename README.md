@@ -1,80 +1,34 @@
 # BEC-Net: Dynamic Quantum Reservoirs Using Bose-Einstein Condensates
 
-**BEC-Net** is a cutting-edge scientific tool designed to simulate and analyze dynamic quantum reservoirs based on Bose-Einstein Condensates (BECs). This tool explores the unique properties of BECs to address challenges in quantum computing, machine learning, and nonlinear system modeling.
+## Overview
+
+BEC-Net is a project designed to simulate dynamic quantum reservoirs using **Bose-Einstein Condensates (BECs)**, which can be applied to neuromorphic computing and quantum machine learning. This project models a quantum system using the concept of a reservoir computing architecture, with BECs acting as the dynamic medium for information processing. The system is trained using a readout layer to predict time-series data.
+
+The input data to the system is encoded and fed into the BEC simulation, where the time evolution of the system is computed. The features extracted from this simulation are then used to train a readout layer that predicts output signals.
 
 ---
 
-## Features
-- **Simulations** of quantum reservoirs using BEC-inspired dynamics.
-- Implements **reservoir computing** for tasks such as signal processing and classification.
-- Modular architecture for easy experimentation and expansion.
-- Visualizes input-output dynamics and performance metrics.
+## Project Structure
 
----
+The project is organized as follows:
 
-## Mathematical Framework
+- **`src/`**: Contains all the source code files:
+  - `bec_simulation.py`: Simulates the evolution of BECs over time.
+  - `input_encoder.py`: Encodes the input signal for the simulation.
+  - `feature_extractor.py`: Extracts features from the simulated densities.
+  - `readout_layer.py`: Implements the training and prediction of the readout layer.
+  
+- **`data/`**: Contains the input signal data (`sine_wave_data.npy`).
 
-### Bose-Einstein Condensate Dynamics
-The dynamics of a Bose-Einstein Condensate are governed by the **Gross-Pitaevskii Equation (GPE)**, a nonlinear Schrödinger equation:
-$$
-i\hbar \frac{\partial \psi(\mathbf{r}, t)}{\partial t} = \left( -\frac{\hbar^2}{2m} \nabla^2 + V(\mathbf{r}) + g|\psi(\mathbf{r}, t)|^2 \right) \psi(\mathbf{r}, t)
-$$
-
-Where:
-- \( \psi(\mathbf{r}, t) \): Wavefunction of the condensate.
-- \( \hbar \): Reduced Planck's constant.
-- \( m \): Mass of the particles in the condensate.
-- \( V(\mathbf{r}) \): External potential.
-- \( g \): Interaction strength.
-
-### Reservoir Computing
-Reservoir computing processes input signals through a high-dimensional dynamical system. The reservoir state is represented as:
-$$
-\mathbf{h}(t+1) = f(\mathbf{W}_{in}\mathbf{u}(t) + \mathbf{W}\mathbf{h}(t)),
-$$
-where:
-- \( \mathbf{h}(t) \): State of the reservoir at time \( t \).
-- \( \mathbf{u}(t) \): Input signal at time \( t \).
-- \( \mathbf{W}_{in} \): Input weight matrix.
-- \( \mathbf{W} \): Reservoir weight matrix.
-- \( f \): Nonlinear activation function.
-
----
-
-## Simulations
-
-### Example Input Signal
-The tool processes various input signals such as sine waves or chaotic signals. For example, a sine wave:
-$$
-u(t) = \sin(\omega t)
-$$
-can be generated and visualized.
-
-### Simulation Outputs
-The following visualizations are generated:
-1. **Input Signal**: Plots of the original signal.
-2. **Reservoir States**: High-dimensional states produced by the BEC reservoir.
-3. **Output Signal**: Mapped outputs from the reservoir.
-
-### Visualization Example
-Below is a sample simulation output:
-
-| Input Signal | Reservoir State Evolution | Output Signal |
-|--------------|----------------------------|---------------|
-| ![Input Signal](https://via.placeholder.com/200) | ![Reservoir State](https://via.placeholder.com/200) | ![Output Signal](https://via.placeholder.com/200) |
+- **`main.py`**: The main script that runs the entire simulation, including encoding the input, simulating the BEC, extracting features, training the readout layer, and making predictions.
 
 ---
 
 ## Installation
 
-### Prerequisites
-- Python 3.8+
-- Required libraries:
-  - `numpy`
-  - `matplotlib`
-  - `scipy`
+To set up this project, make sure you have the following dependencies installed:
 
-### Steps
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/itveryeasy/BEC-Net.git
+```bash
+pip install numpy matplotlib
+
+

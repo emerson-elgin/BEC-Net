@@ -14,8 +14,14 @@ g = 1.0
 # Load input data
 input_signal = np.load('data/sine_wave_data.npy')
 
+# Check the shape of input_signal
+print(f"Shape of input_signal: {input_signal.shape}")
+
 # Encode input
 encoded_input = encode_input(input_signal, grid_size)
+
+# Check the shape of encoded_input
+print(f"Shape of encoded_input: {encoded_input.shape}")
 
 # Initial state
 initial_state = np.exp(-(np.linspace(-1, 1, grid_size)**2))
