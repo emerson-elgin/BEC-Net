@@ -1,4 +1,4 @@
-'''from sklearn.linear_model import Ridge
+from sklearn.linear_model import Ridge
 
 def train_readout(features, targets, alpha=1.0):
     model = Ridge(alpha=alpha)
@@ -6,4 +6,4 @@ def train_readout(features, targets, alpha=1.0):
     return model
 
 def predict(model, features):
-    return model.predict(features)'''
+    return model.predict(features)
